@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 
 type PaymentMethod = {
-  id: 'mtn' | 'orange' | 'paypal';
+  id: 'mtn' | 'orange' | 'paypal' | 'wero';
   label: string;
   details: string;
 }
@@ -28,7 +28,7 @@ const GiftsPage = ({ title, text, methods, note, theme }: GiftsPageProps) => {
   const getMethodIcon = (id: string) => {
     switch (id) {
       case 'mtn': return '📱';
-      case 'orange': return '🍊';
+      case 'orange': return '📱';
       case 'paypal': return '💳';
       default: return '💰';
     }
@@ -203,7 +203,7 @@ const GiftsPage = ({ title, text, methods, note, theme }: GiftsPageProps) => {
         <div className="relative">
           <div className="absolute -top-8 -left-8 text-4xl">💝</div>
           <div className="absolute -top-8 -right-8 text-4xl">🎁</div>
-          <p className={`text-2xl md:text-3xl font-serif italic ${theme === 'dark' ? 'text-[#FFD1C4]' : 'text-[#800000]'} mb-6`}>
+          <p className={`text-xl md:text-3xl font-serif italic ${theme === 'dark' ? 'text-[#FFD1C4]' : 'text-[#800000]'} mb-6`}>
             {note}
           </p>
           <motion.div

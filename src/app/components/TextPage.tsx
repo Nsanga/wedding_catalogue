@@ -1,46 +1,36 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 interface TextPageProps {
-  title: string;
+  title?: string;
   text: string;
+  subtitle?: string;
+  subdesc?: string;
+  link?: string;
+  buttonLabel?: string;
+  limit?: string;
+  image?: string;
   theme: 'light' | 'dark';
 }
 
-const TextPage = ({ title, text, theme }: TextPageProps) => {
+const TextPage = ({ title, text, subtitle, subdesc, buttonLabel, link, limit, image, theme }: TextPageProps) => {
   return (
-    <div className="min-h-[80vh] flex flex-col items-center justify-center px-4 max-w-3xl mx-auto">
+    <div className="min-h-[90vh] flex flex-col items-center justify-center px-4 mx-auto">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="text-center space-y-10 w-full"
+        className="text-center space-y-8 md:space-y-10 w-full max-w-3xl"
       >
-        {/* Title with decorative elements */}
-        <div className="relative">
-          <div className="absolute -top-6 -left-6 w-12 h-12 rounded-full opacity-20"
-            style={{ background: theme === 'dark' ? '#E2725B' : '#800000' }}
-          />
-          <div className="absolute -bottom-6 -right-6 w-12 h-12 rounded-full opacity-20"
-            style={{ background: theme === 'dark' ? '#E2725B' : '#800000' }}
-          />
-          
-          <h2 className="text-5xl md:text-6xl font-serif font-bold relative z-10">
-            <span className="bg-gradient-to-r from-[#E2725B] to-[#800000] bg-clip-text text-transparent">
-              {title}
-            </span>
-          </h2>
-        </div>
-
         {/* Text content with elegant border */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.3 }}
-          className={`relative p-8 md:p-12 rounded-2xl backdrop-blur-sm border ${
-            theme === 'dark'
-              ? 'bg-[#1a0a0a]/60 border-[#E2725B]/20'
-              : 'bg-white/60 border-[#E2725B]/30'
-          } shadow-xl`}
+          className={`relative p-6 md:p-8 lg:p-12 rounded-2xl backdrop-blur-sm border ${theme === 'dark'
+            ? 'bg-[#1a0a0a]/60 border-[#E2725B]/20'
+            : 'bg-white/60 border-[#E2725B]/30'
+            } shadow-xl`}
         >
           {/* Corner decorations */}
           <div className="absolute top-4 left-4 w-6 h-6 border-t-2 border-l-2"
@@ -56,16 +46,88 @@ const TextPage = ({ title, text, theme }: TextPageProps) => {
             style={{ borderColor: theme === 'dark' ? '#E2725B' : '#800000' }}
           />
 
-          <p className={`text-lg md:text-xl leading-relaxed whitespace-pre-line ${
-            theme === 'dark' ? 'text-[#FFD1C4]' : 'text-[#5A0000]'
-          } font-serif`}>
+          {title && <h2 className="text-2xl font-serif mb-4">{title}</h2>}
+
+          <p className={`text-lg md:text-xl leading-relaxed whitespace-pre-line ${theme === 'dark' ? 'text-[#FFD1C4]' : 'text-[#5A0000]'
+            } font-serif mb-8`}>
             {text}
           </p>
+
+          {/* RSVP Card inside the main card */}
+          {subtitle && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5 }}
+              className={`mt-8 pt-8 border-t ${theme === 'dark' ? 'border-[#E2725B]/20' : 'border-[#800000]/20'}`}
+            >
+              <div className="flex flex-col items-center gap-4">
+                <div className="flex items-center gap-3 mb-2">
+                  <div className={`p-3 rounded-full ${theme === 'dark' ? 'bg-[#2a0a0a]' : 'bg-[#FFF5F0]'}`}>
+                    <span className="text-2xl">📋</span>
+                  </div>
+                  <h3 className={`text-xl font-bold ${theme === 'dark' ? 'text-[#FFD1C4]' : 'text-[#800000]'}`}>
+                    {subtitle}
+                  </h3>
+                </div>
+
+                <p className={`text-sm md:text-base ${theme === 'dark' ? 'text-[#FFD1C4]/80' : 'text-[#800000]/80'} mb-4`}>
+                  {subdesc}
+                </p>
+
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="inline-block"
+                >
+                  <a
+                    href={link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`px-6 py-3 rounded-full font-semibold flex items-center gap-2 ${theme === 'dark'
+                      ? 'bg-gradient-to-r from-[#E2725B] to-[#800000] text-white'
+                      : 'bg-gradient-to-r from-[#FF7A5C] to-[#B84A4A] text-white'
+                      } shadow-lg hover:shadow-xl transition-all duration-300`}
+                  >
+                    <span>{buttonLabel}</span>
+                    <span className="text-lg">→</span>
+                  </a>
+                </motion.div>
+
+                <div className="flex items-center gap-2 mt-3">
+                  <span className={`text-xs ${theme === 'dark' ? 'text-[#FFD1C4]/60' : 'text-[#800000]/60'}`}>
+                    ⏰ {limit}
+                  </span>
+                </div>
+              </div>
+            </motion.div>
+          )}
+          {image && (
+            <>
+              {/* Bottom thumbnail */}
+              <div className="absolute -bottom-10 left-1/2 -translate-x-1/2">
+                <div
+                  className={`relative w-20 h-20 rounded-full overflow-hidden border-4 shadow-xl ${theme === 'dark'
+                    ? 'border-[#E2725B] bg-white'
+                    : 'border-[#800000] bg-white'
+                    }`}
+                >
+                  <Image
+                    src={image} // ou une autre image miniature
+                    alt="Souvenir"
+                    fill
+                    className="object-contain p-2"
+                    sizes="80px"
+                  />
+                </div>
+              </div>
+            </>
+          )}
         </motion.div>
 
         {/* Decorative elements with animation */}
         <motion.div
-          className="flex justify-center gap-8 mt-12"
+          className="flex justify-center gap-6 md:gap-8 mt-8"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.6 }}
@@ -75,7 +137,7 @@ const TextPage = ({ title, text, theme }: TextPageProps) => {
               key={i}
               className="relative"
               animate={{
-                y: [0, -15, 0],
+                y: [0, -10, 0],
                 rotate: [0, 360],
               }}
               transition={{
@@ -85,8 +147,8 @@ const TextPage = ({ title, text, theme }: TextPageProps) => {
                 delay: i * 0.5,
               }}
             >
-              <div className="text-4xl">{emoji}</div>
-              <div className="absolute inset-0 rounded-full animate-ping opacity-30"
+              <div className="text-3xl md:text-4xl">{emoji}</div>
+              <div className="absolute inset-0 rounded-full animate-ping opacity-20"
                 style={{ background: theme === 'dark' ? '#E2725B' : '#800000' }}
               />
             </motion.div>
@@ -98,12 +160,12 @@ const TextPage = ({ title, text, theme }: TextPageProps) => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.9 }}
-          className={`pt-8 mt-8 border-t ${theme === 'dark' ? 'border-[#E2725B]/30' : 'border-[#800000]/30'}`}
+          className={`pt-6 md:pt-8 mt-6 md:mt-8 border-t ${theme === 'dark' ? 'border-[#E2725B]/30' : 'border-[#800000]/30'}`}
         >
-          <p className={`text-2xl font-serif italic ${theme === 'dark' ? 'text-[#FFD1C4]' : 'text-[#800000]'}`}>
+          <p className={`text-xl md:text-2xl font-serif italic ${theme === 'dark' ? 'text-[#FFD1C4]' : 'text-[#800000]'}`}>
             Avec tout notre amour
           </p>
-          <div className="flex justify-center gap-4 mt-4">
+          <div className="flex justify-center gap-3 md:gap-4 mt-3 md:mt-4">
             <span className={`text-sm ${theme === 'dark' ? 'text-[#FFD1C4]/70' : 'text-[#800000]/70'}`}>
               Ramélie
             </span>

@@ -32,7 +32,6 @@ const LanguageToggle = ({ lang, setLang, theme }: LanguageToggleProps) => {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
-          <span className="text-lg">{l.flag}</span>
           <span className="font-semibold tracking-wider">{l.code.toUpperCase()}</span>
         </motion.button>
       ))}
