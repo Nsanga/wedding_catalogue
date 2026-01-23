@@ -1,6 +1,5 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import Image from 'next/image';
 
 type Cover = {
   names: string;
@@ -12,36 +11,39 @@ type Cover = {
 
 interface Data {
   data: Cover;
+  theme: 'light' | 'dark';
 }
 
-const CoverPage = ({ data }: Data) => {
+const CoverPage = ({ data, theme }: Data) => {
   return (
-    <div className="min-h-[80vh] flex flex-col items-center justify-center px-4 relative overflow-hidden">
+    <div className="min-h-[90vh] flex flex-col items-center justify-center px-4 relative overflow-hidden">
       {/* Background decorative elements */}
       <div className="absolute inset-0 overflow-hidden opacity-10">
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-gradient-to-r from-rose-400 to-orange-400 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full blur-3xl" />
+        <div 
+          className="absolute top-1/4 left-1/4 w-72 h-72 rounded-full blur-3xl"
+          style={{ background: `radial-gradient(circle, ${theme === 'dark' ? '#E2725B40' : '#E2725B20'} 0%, transparent 70%)` }}
+        />
+        <div 
+          className="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full blur-3xl"
+          style={{ background: `radial-gradient(circle, ${theme === 'dark' ? '#80000040' : '#80000020'} 0%, transparent 70%)` }}
+        />
       </div>
 
       <motion.div
         initial={{ scale: 0.8, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
-        transition={{ duration: 0.8 }}
+        transition={{ duration: 0.8, type: "spring" }}
         className="relative z-10"
       >
-        <div className="relative w-48 h-48 md:w-64 md:h-64 mx-auto mb-8 rounded-full overflow-hidden border-4 border-white/30 shadow-2xl">
-        <Image
-              src={data.image}
-              alt="Couple Ramélie & Rémy"
-              fill
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-              className="object-cover transition-transform duration-700 hover:scale-110"
-              priority
-              placeholder="blur"
-              blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAADAAQDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABqv/9k="
-              quality={90}
-            />
+        <div className="relative w-56 h-56 md:w-72 md:h-72 mx-auto mb-10 rounded-full overflow-hidden border-4 border-white/40 shadow-2xl">
+          <img 
+            src={data.image} 
+            alt="Couple" 
+            className="w-full h-full object-cover transition-transform duration-700 hover:scale-110"
+          />
           <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+          {/* Ornamental border */}
+          <div className="absolute inset-0 border-2 border-white/20 rounded-full" />
         </div>
       </motion.div>
 
@@ -49,17 +51,27 @@ const CoverPage = ({ data }: Data) => {
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.3, duration: 0.8 }}
-        className="text-center z-10"
+        className="text-center z-10 max-w-2xl"
       >
-        <h1 className="text-5xl md:text-7xl font-serif font-bold mb-4 bg-gradient-to-r from-rose-600 to-orange-500 bg-clip-text text-transparent">
-          {data.names}
+        <h1 className="text-5xl md:text-7xl font-serif font-bold mb-6 tracking-tight">
+          <span className="bg-gradient-to-r from-[#E2725B] to-[#800000] bg-clip-text text-transparent">
+            {data.names}
+          </span>
         </h1>
+        
+        <motion.div
+          initial={{ width: 0 }}
+          animate={{ width: "100px" }}
+          transition={{ delay: 0.5 }}
+          className="h-0.5 bg-gradient-to-r from-[#E2725B] to-[#800000] mx-auto mb-6"
+        />
         
         <motion.p 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.5 }}
-          className="uppercase tracking-[0.3em] text-sm mb-2 text-gray-600 dark:text-gray-400"
+          transition={{ delay: 0.6 }}
+          className="uppercase tracking-[0.4em] text-sm mb-4 font-semibold"
+          style={{ color: theme === 'dark' ? '#FFD1C4' : '#800000' }}
         >
           {data.subtitle}
         </motion.p>
@@ -68,7 +80,8 @@ const CoverPage = ({ data }: Data) => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.7 }}
-          className="text-2xl font-light mb-8 text-gray-700 dark:text-gray-300"
+          className="text-2xl md:text-3xl font-light mb-8 italic"
+          style={{ color: theme === 'dark' ? '#FFD1C4' : '#5A0000' }}
         >
           {data.date}
         </motion.p>
@@ -77,34 +90,61 @@ const CoverPage = ({ data }: Data) => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.9 }}
-          className="font-serif text-xl italic max-w-lg mx-auto text-gray-600 dark:text-gray-400 px-4 py-6 border-t border-b border-gray-200/50 dark:border-gray-700/50"
+          className="font-serif text-xl md:text-2xl italic max-w-lg mx-auto px-6 py-8 relative"
+          style={{ color: theme === 'dark' ? '#E2725B' : '#800000' }}
         >
-          &quot;{data.quote}&quot;
+          <span className="absolute -left-4 top-0 text-3xl">"</span>
+          {data.quote}
+          <span className="absolute -right-4 bottom-0 text-3xl">"</span>
         </motion.p>
       </motion.div>
 
-      {/* Animated floating hearts */}
+      {/* Animated floating elements */}
       <div className="absolute inset-0 pointer-events-none">
-        {[...Array(5)].map((_, i) => (
+        {[...Array(8)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute text-2xl text-rose-400/20"
+            className="absolute text-3xl"
+            style={{ color: theme === 'dark' ? '#E2725B40' : '#E2725B30' }}
             initial={{ y: 0, x: Math.random() * 100 }}
             animate={{ 
-              y: [0, -100, -200],
-              x: [0, Math.random() * 50 - 25, Math.random() * 100 - 50],
-              opacity: [0, 1, 0]
+              y: [0, -150, -300],
+              x: [0, Math.random() * 60 - 30, Math.random() * 100 - 50],
+              opacity: [0, 0.8, 0],
+              rotate: [0, 180, 360]
             }}
             transition={{
-              duration: Math.random() * 10 + 10,
+              duration: Math.random() * 8 + 12,
               repeat: Infinity,
               delay: Math.random() * 5
             }}
           >
-            ❤️
+            {i % 3 === 0 ? '❤️' : i % 3 === 1 ? '✨' : '🌸'}
           </motion.div>
         ))}
       </div>
+
+      {/* Scroll indicator */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.5 }}
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+      >
+        <div className="flex flex-col items-center gap-2">
+          <span className="text-sm font-medium" style={{ color: theme === 'dark' ? '#FFD1C4' : '#800000' }}>
+            Défilez
+          </span>
+          <motion.div
+            animate={{ y: [0, 8, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity }}
+            className="w-6 h-10 rounded-full border-2 flex items-start justify-center p-1"
+            style={{ borderColor: theme === 'dark' ? '#E2725B' : '#800000' }}
+          >
+            <div className="w-1 h-2 rounded-full" style={{ background: theme === 'dark' ? '#E2725B' : '#800000' }} />
+          </motion.div>
+        </div>
+      </motion.div>
     </div>
   );
 };

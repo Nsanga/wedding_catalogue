@@ -108,3 +108,18 @@ body {
   background: color-mix(in srgb, var(--background) 80%, transparent);
   border: 1px solid color-mix(in srgb, var(--foreground) 10%, transparent);
 }
+
+.terracotta {
+  background-color: #E2725B;   /* ou #E35336 pour plus vif */
+  color: white;
+}
+
+.marron {
+  background-color: #800000;    /* ou #8B4513 pour un marron plus naturel */
+  color: white;
+}
+
+.orange {
+  background-color: #FFA500;
+  color: black;   /* ou white selon le fond */
+}
