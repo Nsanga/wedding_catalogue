@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
@@ -65,11 +67,12 @@ const CoverPage = ({ data, theme }: Data) => {
         transition={{ delay: 0.3, duration: 0.8 }}
         className="text-center z-10 max-w-2xl"
       >
-        <h1 className="text-3xl md:text-5xl font-serif font-bold mb-6 tracking-tight text-center">
-            <span className="bg-gradient-to-r from-[#E2725B] to-[#800000] bg-clip-text text-transparent block">{first}</span>
-            <span className="bg-gradient-to-r from-[#E2725B] to-[#800000] bg-clip-text text-transparent block">&</span>
-            <span className="bg-gradient-to-r from-[#E2725B] to-[#800000] bg-clip-text text-transparent block">{second}</span>
+        <h1 className="font-wedding text-4xl md:text-6xl text-center script-gradient script-gradient-animated script-shadow">
+          <span className="bg-gradient-to-r from-[#E2725B] to-[#800000] bg-clip-text text-transparent block">{first}</span>
+          <span className="bg-gradient-to-r from-[#E2725B] to-[#800000] bg-clip-text text-transparent block">&</span>
+          <span className="bg-gradient-to-r from-[#E2725B] to-[#800000] bg-clip-text text-transparent block">{second}</span>
         </h1>
+
 
         <motion.div
           initial={{ width: 0 }}
@@ -95,9 +98,9 @@ const CoverPage = ({ data, theme }: Data) => {
           className="font-serif text-xl md:text-2xl italic max-w-lg mx-auto px-6 py-8 relative"
           style={{ color: theme === 'dark' ? '#E2725B' : '#800000' }}
         >
-          <span className="absolute -left-4 top-0 text-3xl">`&quot;`</span>
+          <span className="absolute -left-4 top-0 text-3xl">&quot;</span>
           {data.quote}
-          <span className="absolute -right-4 bottom-0 text-3xl">`&quot;`</span>
+          <span className="absolute -right-4 bottom-0 text-3xl">&quot;</span>
         </motion.p>
       </motion.div>
 

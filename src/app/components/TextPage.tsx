@@ -1,3 +1,6 @@
+
+'use client';
+
 import React from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
@@ -46,7 +49,13 @@ const TextPage = ({ title, text, subtitle, subdesc, buttonLabel, link, limit, im
             style={{ borderColor: theme === 'dark' ? '#E2725B' : '#800000' }}
           />
 
-          {title && <h2 className="text-2xl font-serif mb-4">{title}</h2>}
+          {title && (
+            <h2 className="font-wedding text-4xl md:text-6xl text-center script-gradient script-gradient-animated script-shadow mb-4 sm:mb-6 px-2">
+              <span className="bg-gradient-to-r from-[#E2725B] to-[#800000] bg-clip-text text-transparent break-words">
+                {title}
+              </span>
+            </h2>
+          )}
 
           <p className={`text-lg md:text-xl leading-relaxed whitespace-pre-line ${theme === 'dark' ? 'text-[#FFD1C4]' : 'text-[#5A0000]'
             } font-serif mb-8`}>
@@ -165,14 +174,14 @@ const TextPage = ({ title, text, subtitle, subdesc, buttonLabel, link, limit, im
           <p className={`text-xl md:text-2xl font-serif italic ${theme === 'dark' ? 'text-[#FFD1C4]' : 'text-[#800000]'}`}>
             Avec tout notre amour
           </p>
-          <div className="flex justify-center gap-3 md:gap-4 mt-3 md:mt-4">
-            <span className={`text-sm ${theme === 'dark' ? 'text-[#FFD1C4]/70' : 'text-[#800000]/70'}`}>
+          <div className="flex justify-center gap-3 md:gap-4 mt-3 md:mt-4 font-wedding">
+            <span className={`text-lg font-semibold ${theme === 'dark' ? 'text-[#FFD1C4]/70' : 'text-[#800000]/70'}`}>
               Ramélie
             </span>
-            <span className={`text-sm ${theme === 'dark' ? 'text-[#FFD1C4]/70' : 'text-[#800000]/70'}`}>
+            <span className={`text-lg font-semibold ${theme === 'dark' ? 'text-[#FFD1C4]/70' : 'text-[#800000]/70'}`}>
               &
             </span>
-            <span className={`text-sm ${theme === 'dark' ? 'text-[#FFD1C4]/70' : 'text-[#800000]/70'}`}>
+            <span className={`text-lg font-semibold ${theme === 'dark' ? 'text-[#FFD1C4]/70' : 'text-[#800000]/70'}`}>
               Rémy
             </span>
           </div>

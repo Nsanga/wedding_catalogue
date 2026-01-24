@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { motion } from 'framer-motion';
 
@@ -21,7 +23,7 @@ const ProgramPage = ({ title, events, theme }: ProgramPageProps) => {
         animate={{ opacity: 1, y: 0 }}
         className="text-center mb-8 sm:mb-12"
       >
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold mb-4 sm:mb-6 px-2">
+        <h2 className="font-wedding text-4xl md:text-6xl text-center script-gradient script-gradient-animated script-shadow mb-4 sm:mb-6 px-2">
           <span className="bg-gradient-to-r from-[#E2725B] to-[#800000] bg-clip-text text-transparent break-words">
             {title}
           </span>

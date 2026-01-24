@@ -37,7 +37,7 @@ const GalleryPage = ({ title, subtitle, photos, theme }: GalleryPageProps) => {
     <div className="py-10 px-4">
       {/* Header */}
       <div className="text-center mb-12">
-        <h2 className="text-4xl md:text-5xl font-serif font-bold mb-6">
+        <h2 className="font-wedding text-4xl md:text-6xl text-center script-gradient script-gradient-animated script-shadow mb-6">
           <span className="bg-gradient-to-r from-[#E2725B] to-[#800000] bg-clip-text text-transparent">
             {title}
           </span>

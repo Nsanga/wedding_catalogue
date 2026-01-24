@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 
@@ -60,7 +62,7 @@ const GiftsPage = ({ title, text, methods, note, theme }: GiftsPageProps) => {
         animate={{ opacity: 1, y: 0 }}
         className="text-center mb-12"
       >
-        <h2 className="text-4xl md:text-5xl font-serif font-bold mb-8">
+        <h2 className="font-wedding text-4xl md:text-6xl text-center script-gradient script-gradient-animated script-shadow mb-8">
           <span className="bg-gradient-to-r from-[#E2725B] to-[#800000] bg-clip-text text-transparent">
             {title}
           </span>
