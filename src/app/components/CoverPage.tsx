@@ -11,7 +11,7 @@ type Cover = {
   image: string;
 }
 
-interface Data {
+interface Data { 
   data: Cover;
   theme: 'light' | 'dark';
 }
