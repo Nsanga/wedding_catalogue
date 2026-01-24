@@ -17,7 +17,7 @@ type Language = keyof typeof content;
 
 export default function WeddingCatalogue() {
   const [lang, setLang] = useState<Language>("fr");
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState(0); 
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
   const [mounted, setMounted] = useState(false);
 
