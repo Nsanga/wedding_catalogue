@@ -1,11 +1,17 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Parisienne&display=swap');
 
 :root {
-  --background: #fef7f1; /* Rose pâle pour thème clair */
-  --foreground: #2c1810; /* Marron foncé pour texte */
-  --primary: #e11d48; /* Rose vif */
-  --secondary: #f97316; /* Orange */
-  --accent: #8b5cf6; /* Violet */
+  --background: #fef7f1;
+  /* Rose pâle pour thème clair */
+  --foreground: #2c1810;
+  /* Marron foncé pour texte */
+  --primary: #e11d48;
+  /* Rose vif */
+  --secondary: #f97316;
+  /* Orange */
+  --accent: #8b5cf6;
+  /* Violet */
 }
 
 @theme inline {
@@ -17,29 +23,48 @@
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --font-serif: 'Georgia', 'Times New Roman', serif;
-  
+
   /* Custom animations */
   --animate-float: float 6s ease-in-out infinite;
   --animate-pulse-glow: pulse-glow 2s ease-in-out infinite;
-  
+
   @keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-20px); }
+
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+
+    50% {
+      transform: translateY(-20px);
+    }
   }
-  
+
   @keyframes pulse-glow {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.5; }
+
+    0%,
+    100% {
+      opacity: 1;
+    }
+
+    50% {
+      opacity: 0.5;
+    }
   }
 }
 
 /* Dark theme overrides */
 .dark {
-  --background: #0f172a; /* Bleu nuit */
-  --foreground: #f1f5f9; /* Gris clair */
-  --primary: #f472b6; /* Rose pâle */
-  --secondary: #fb923c; /* Orange doux */
-  --accent: #a78bfa; /* Violet doux */
+  --background: #0f172a;
+  /* Bleu nuit */
+  --foreground: #f1f5f9;
+  /* Gris clair */
+  --primary: #f472b6;
+  /* Rose pâle */
+  --secondary: #fb923c;
+  /* Orange doux */
+  --accent: #a78bfa;
+  /* Violet doux */
 }
 
 body {
@@ -107,4 +132,97 @@ body {
   backdrop-filter: blur(10px);
   background: color-mix(in srgb, var(--background) 80%, transparent);
   border: 1px solid color-mix(in srgb, var(--foreground) 10%, transparent);
+}
+
+.terracotta {
+  background-color: #E2725B;
+  /* ou #E35336 pour plus vif */
+  color: white;
+}
+
+.marron {
+  background-color: #800000;
+  /* ou #8B4513 pour un marron plus naturel */
+  color: white;
+}
+
+.orange {
+  background-color: #FFA500;
+  color: black;
+  /* ou white selon le fond */
+}
+
+.font-wedding {
+  font-family: "Parisienne", cursive;
+  letter-spacing: 0.06em;
+}
+
+/* Effets spéciaux pour les polices script */
+.script-shadow {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.script-shadow-dark {
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.script-glow {
+  text-shadow: 0 0 8px rgba(226, 114, 91, 0.3);
+}
+
+.script-gradient {
+  background: linear-gradient(135deg,
+      #FFD1C4,
+      /* #E2725B très clair */
+      #FF8A71,
+      /* #E2725B clair */
+      #E2725B,
+      /* Rose saumon principal */
+      #B84A4A,
+      /* Intermédiaire */
+      #800000);
+  /* Bordeaux */
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradient-flow 4s ease infinite;
+}
+
+.dark .script-gradient {
+  background: linear-gradient(135deg,
+      #FFF0EB,
+      /* Très clair pour contraste */
+      #FFD1C4,
+      /* Clair */
+      #FFB4A2,
+      /* Moyen-clair */
+      #E2725B,
+      /* Principal */
+      #FF6B6B);
+  /* Rouge clair vibrante */
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradient-flow 5s ease infinite;
+}
+
+@keyframes weddingGradient {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.script-gradient-animated {
+  background-size: 300% 300%;
+  animation: weddingGradient 12s ease infinite;
 }

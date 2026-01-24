@@ -1,107 +1,133 @@
-import React, { useState } from 'react';
+'use client';
+
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 
 type Photo = {
-    id: number;
-    src: string;
-    alt: string;
-}
+  id: number;
+  src: string;
+  alt: string;
+};
 
 interface GalleryPageProps {
-    title: string;
-    subtitle: string;
-    photos: Readonly<Photo[]>;
+  title: string;
+  subtitle: string;
+  photos: Readonly<Photo[]>;
+  theme: 'light' | 'dark';
 }
 
-const GalleryPage = ({ title, subtitle, photos }: GalleryPageProps) => {
-    const [selectedImage, setSelectedImage] = useState<Photo | null>(null);
+const GalleryPage = ({ title, subtitle, photos, theme }: GalleryPageProps) => {
+  const [selectedImage, setSelectedImage] = useState<Photo | null>(null);
 
-    return (
-        <div className="py-10">
-            <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="text-center mb-12"
-            >
-                <h2 className="text-4xl font-serif font-bold mb-4 bg-gradient-to-r from-rose-600 to-orange-500 bg-clip-text text-transparent">
-                    {title}
-                </h2>
-                <p className="text-gray-600 dark:text-gray-400 italic">
-                    {subtitle}
-                </p>
-            </motion.div>
+  /* 🔒 Bloquer le scroll arrière */
+  useEffect(() => {
+    if (selectedImage) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
 
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 px-4">
-                {photos.map((photo, index) => (
-                    <motion.div
-                        key={photo.id}
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ delay: index * 0.1 }}
-                        whileHover={{ scale: 1.05, rotate: Math.random() * 4 - 2 }}
-                        onClick={() => setSelectedImage(photo)}
-                        className="cursor-pointer relative overflow-hidden rounded-2xl shadow-lg group"
-                    >
-                        <div className="aspect-square overflow-hidden">
-                            <Image
-                                src={photo.src}
-                                alt={photo.alt}
-                                fill
-                                sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
-                                className="object-cover transition-transform duration-500 group-hover:scale-110"
-                                quality={85}
-                                placeholder="blur"
-                                blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAADAAQDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABqv/9k="
-                            />
-                        </div>
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-                            <p className="text-white text-sm font-medium">{photo.alt}</p>
-                        </div>
-                    </motion.div>
-                ))}
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [selectedImage]);
+
+  return (
+    <div className="py-10 px-4">
+      {/* Header */}
+      <div className="text-center mb-12">
+        <h2 className="font-wedding text-4xl md:text-6xl text-center script-gradient script-gradient-animated script-shadow mb-6">
+          <span className="bg-gradient-to-r from-[#E2725B] to-[#800000] bg-clip-text text-transparent">
+            {title}
+          </span>
+        </h2>
+        <p
+          className={`text-lg italic ${theme === 'dark' ? 'text-[#FFD1C4]' : 'text-[#5A0000]'
+            }`}
+        >
+          {subtitle}
+        </p>
+      </div>
+
+      {/* Grid */}
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+        {photos.map((photo, index) => (
+          <motion.div
+            key={photo.id}
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: index * 0.08 }}
+            whileHover={{ scale: 1.05 }}
+            onClick={() => setSelectedImage(photo)}
+            className="cursor-pointer rounded-2xl overflow-hidden shadow-xl"
+          >
+            <div className="relative aspect-square">
+              <Image
+                src={photo.src}
+                alt={photo.alt}
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 50vw, 33vw"
+              />
             </div>
+          </motion.div>
+        ))}
+      </div>
 
-            {/* Lightbox */}
-            <AnimatePresence>
-                {selectedImage && (
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        className="fixed inset-0 bg-black/90 z-[100] flex items-center justify-center p-4"
-                        onClick={() => setSelectedImage(null)}
-                    >
-                        <motion.div
-                            initial={{ scale: 0.8 }}
-                            animate={{ scale: 1 }}
-                            exit={{ scale: 0.8 }}
-                            className="relative w-full max-w-4xl h-[80vh]"
-                            onClick={(e) => e.stopPropagation()}
-                        >
-                            <Image
-                                src={selectedImage.src}
-                                alt={selectedImage.alt}
-                                fill
-                                sizes="100vw"
-                                className="object-contain rounded-lg"
-                                quality={100}
-                            />
-                            <button
-                                onClick={() => setSelectedImage(null)}
-                                className="absolute top-4 right-4 text-white text-2xl bg-black/50 rounded-full w-10 h-10 flex items-center justify-center hover:bg-black/70 transition-colors"
-                            >
-                                ✕
-                            </button>
-                            <p className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-white bg-black/50 px-4 py-2 rounded-full text-sm">
-                                {selectedImage.alt}
-                            </p>
-                        </motion.div>
-                    </motion.div>
-                )}
-            </AnimatePresence>
-        </div>
-    );
+      {/* LIGHTBOX */}
+      <AnimatePresence>
+        {selectedImage && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[999] flex items-center justify-center"
+            onClick={() => setSelectedImage(null)}
+            style={{
+              background:
+                theme === 'dark'
+                  ? 'rgba(0,0,0,0.95)'
+                  : 'rgba(255,255,255,0.95)',
+            }}
+          >
+            {/* Conteneur CENTRÉ */}
+            <motion.div
+              initial={{ scale: 0.85 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0.85 }}
+              transition={{ type: 'spring', stiffness: 120 }}
+              className="relative flex items-center justify-center max-w-[90vw] max-h-[85vh]"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* IMAGE CENTRÉE */}
+              <Image
+                src={selectedImage.src}
+                alt={selectedImage.alt}
+                width={1600}
+                height={1200}
+                className="max-w-full max-h-[85vh] object-contain rounded-xl shadow-2xl"
+                priority
+              />
+
+              {/* Bouton fermer */}
+              <button
+                onClick={() => setSelectedImage(null)}
+                className="absolute -top-4 -right-4 w-12 h-12 rounded-full bg-black/70 text-white flex items-center justify-center text-xl hover:scale-110 transition"
+              >
+                ✕
+              </button>
+
+              {/* Caption */}
+              <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 bg-black/60 text-white px-6 py-2 rounded-full text-sm">
+                {selectedImage.alt}
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
 };
 
 export default GalleryPage;

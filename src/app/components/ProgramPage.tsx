@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { motion } from 'framer-motion';
 
@@ -10,27 +12,30 @@ type Event = {
 interface ProgramPageProps {
   title: string;
   events: Readonly<Event[]>;
+  theme: 'light' | 'dark';
 }
 
-const ProgramPage = ({ title, events }: ProgramPageProps) => {
+const ProgramPage = ({ title, events, theme }: ProgramPageProps) => {
   return (
-    <div className="py-10 px-4 max-w-2xl mx-auto">
+    <div className="py-8 sm:py-10 px-3 sm:px-4 max-w-4xl mx-auto">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="text-center mb-12"
+        className="text-center mb-8 sm:mb-12"
       >
-        <h2 className="text-4xl font-serif font-bold mb-6 bg-gradient-to-r from-purple-600 to-pink-500 bg-clip-text text-transparent">
-          {title}
+        <h2 className="font-wedding text-4xl md:text-6xl text-center script-gradient script-gradient-animated script-shadow mb-4 sm:mb-6 px-2">
+          <span className="bg-gradient-to-r from-[#E2725B] to-[#800000] bg-clip-text text-transparent break-words">
+            {title}
+          </span>
         </h2>
-        <p className="text-gray-600 dark:text-gray-400">
+        <p className={`text-base sm:text-lg ${theme === 'dark' ? 'text-[#FFD1C4]' : 'text-[#5A0000]'} italic px-2`}>
           Suivez chaque moment magique de notre journée spéciale
         </p>
       </motion.div>
 
-      <div className="relative">
-        {/* Timeline line */}
-        <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-purple-500 to-pink-500" />
+      <div className="relative pl-4 sm:pl-0">
+        {/* Timeline line - Position ajustée pour mobile */}
+        <div className="absolute left-4 sm:left-8 top-0 bottom-0 w-0.5 sm:w-1 bg-gradient-to-b from-[#E2725B] via-[#B84A4A] to-[#800000]" />
         
         {events.map((event, index) => (
           <motion.div
@@ -38,47 +43,74 @@ const ProgramPage = ({ title, events }: ProgramPageProps) => {
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: index * 0.1 }}
-            className="relative flex items-start gap-6 mb-8 group"
+            className="relative flex items-start gap-3 sm:gap-6 mb-8 sm:mb-10 group"
           >
-            {/* Timeline dot */}
+            {/* Timeline dot - Taille réduite sur mobile */}
             <div className="relative z-10 flex-shrink-0">
-              <div className="w-16 h-16 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center text-white font-bold text-lg shadow-lg">
-                {index + 1}
+              <div className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-full flex items-center justify-center shadow-lg"
+                style={{ background: `linear-gradient(135deg, ${theme === 'dark' ? '#E2725B' : '#FF7A5C'}, ${theme === 'dark' ? '#800000' : '#B84A4A'})` }}
+              >
+                <span className="text-white font-bold text-sm sm:text-lg md:text-xl">{index + 1}</span>
               </div>
-              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 animate-ping opacity-20" />
+              <div className="absolute inset-0 rounded-full animate-ping opacity-20"
+                style={{ background: theme === 'dark' ? '#E2725B' : '#FF7A5C' }}
+              />
             </div>
 
-            {/* Event card */}
+            {/* Event card - Layout responsive */}
             <motion.div
-              whileHover={{ scale: 1.02, x: 10 }}
-              className="flex-1 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-gray-200/50 dark:border-gray-700/50"
+              whileHover={{ scale: 1.02, x: 5 }}
+              className={`flex-1 rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-md sm:shadow-lg border backdrop-blur-sm min-w-0 ${
+                theme === 'dark'
+                  ? 'bg-[#1a0a0a]/60 border-[#E2725B]/20'
+                  : 'bg-white/70 border-[#E2725B]/30'
+              }`}
             >
-              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
-                <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-lg bg-gradient-to-r from-purple-100 to-pink-100 dark:from-purple-900/30 dark:to-pink-900/30 flex items-center justify-center">
-                    <span className="text-2xl">
+              {/* Header avec layout vertical sur mobile */}
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-6 mb-3 sm:mb-4">
+                <div className="flex items-start sm:items-center gap-3 sm:gap-4">
+                  <div className={`w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-lg sm:rounded-xl flex items-center justify-center flex-shrink-0 ${
+                    theme === 'dark' ? 'bg-[#2a0a0a]' : 'bg-[#FFF5F0]'
+                  }`}>
+                    <span className="text-xl sm:text-2xl">
                       {index === 0 ? '👰' : 
                        index === events.length - 1 ? '🎉' : 
-                       '💒'}
+                       index === 1 ? '💍' : '💒'}
                     </span>
                   </div>
-                  <div>
-                    <h3 className="text-xl font-bold text-gray-800 dark:text-gray-200">
+                  <div className="min-w-0 flex-1">
+                    <h3 className={`text-lg sm:text-xl md:text-2xl font-bold ${theme === 'dark' ? 'text-white' : 'text-[#800000]'} break-words`}>
                       {event.title}
                     </h3>
-                    <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                    {/* Place cachée sur mobile car redondante */}
+                    <p className={`text-xs sm:text-sm ${theme === 'dark' ? 'text-[#FFD1C4]' : 'text-[#B84A4A]'} mt-1 hidden sm:block`}>
                       {event.place}
                     </p>
                   </div>
                 </div>
-                <div className="px-4 py-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full">
-                  <p className="text-white font-semibold">{event.time}</p>
+                
+                {/* Time badge - Taille adaptative */}
+                <div className="px-3 sm:px-4 py-1.5 sm:py-2 rounded-full shadow text-center sm:text-left w-full sm:w-auto"
+                  style={{ background: theme === 'dark' ? 'linear-gradient(to right, #E2725B, #800000)' : 'linear-gradient(to right, #FF7A5C, #B84A4A)' }}
+                >
+                  <p className="text-white font-bold text-sm sm:text-base">{event.time}</p>
                 </div>
               </div>
               
-              <div className="flex items-center gap-2 text-gray-600 dark:text-gray-400">
-                <span>📍</span>
-                <p className="text-sm italic">{event.place}</p>
+              {/* Place visible uniquement sur mobile */}
+              <div className="flex items-center gap-2 sm:hidden mt-2">
+                <span className="text-base">📍</span>
+                <p className={`text-xs ${theme === 'dark' ? 'text-[#FFD1C4]' : 'text-[#800000]'} truncate`}>
+                  {event.place}
+                </p>
+              </div>
+              
+              {/* Place version desktop (avec plus de détails) */}
+              <div className="hidden sm:flex items-center gap-2 mt-2">
+                <span className="text-base sm:text-lg">📍</span>
+                <p className={`text-sm italic ${theme === 'dark' ? 'text-[#FFD1C4]' : 'text-[#800000]'} break-words`}>
+                  {event.place}
+                </p>
               </div>
             </motion.div>
           </motion.div>
@@ -88,12 +120,25 @@ const ProgramPage = ({ title, events }: ProgramPageProps) => {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 0.5 }}
-        className="text-center mt-12 p-6 bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 rounded-2xl border border-purple-200 dark:border-purple-800"
+        transition={{ delay: 0.3 }}
+        className={`text-center mt-12 sm:mt-16 p-6 sm:p-8 rounded-xl sm:rounded-2xl border backdrop-blur-sm mx-2 sm:mx-0 ${
+          theme === 'dark'
+            ? 'bg-gradient-to-r from-[#1a0a0a] to-[#2a0a0a] border-[#E2725B]/30'
+            : 'bg-gradient-to-r from-[#FFF5F0] to-[#FFE8E0] border-[#E2725B]/50'
+        }`}
       >
-        <p className="text-purple-800 dark:text-purple-300 italic">
-          ✨ Nous avons hâte de partager tous ces moments magiques avec vous !
+        <p className={`text-lg sm:text-xl md:text-2xl font-serif italic ${theme === 'dark' ? 'text-[#FFD1C4]' : 'text-[#800000]'} leading-relaxed`}>
+        &quot;Nous avons hâte de partager tous ces moments magiques avec vous !&quot;
         </p>
+        <motion.div
+          className="flex justify-center gap-3 sm:gap-4 mt-4 sm:mt-6"
+          animate={{ scale: [1, 1.1, 1] }}
+          transition={{ duration: 2, repeat: Infinity }}
+        >
+          <span className="text-2xl sm:text-3xl">💕</span>
+          <span className="text-2xl sm:text-3xl">✨</span>
+          <span className="text-2xl sm:text-3xl">🎉</span>
+        </motion.div>
       </motion.div>
     </div>
   );

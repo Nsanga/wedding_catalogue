@@ -3,33 +3,36 @@ export const content = {
     cover: {
       names: "Ramélie & Rémy",
       date: "Thursday, April 23",
-      subtitle: "Wedding Catalogue",
+      subtitle: "Wedding Program",
       quote: "Love is patient, love is kind.",
-      image: "/assets/images/couple-cover.jpeg",
+      image: "/assets/images/couple-cover.jpg",
     },
     welcome: {
-      title: "Welcome",
       text: "Dear guests,\n\nWe are deeply honored to share this unique moment of our lives with you. Your presence is a true blessing we cherish.",
+      image: "/assets/images/welcome.jpg"
     },
     program: {
       title: "Wedding Program",
       events: [
         {
           time: "Thursday April 23 – 2 PM",
-          title: "Traditional Ceremony",
+          title: "Traditional Wedding",
           place: "Yaoundé, Nkolbong",
         },
-        { time: "10 AM", title: "Civil Wedding", place: "Nkolondom" },
-        { time: "12 PM", title: "Reception", place: "Nkolondom" },
+        {
+          time: "10 AM",
+          title: "Civil Wedding followed by a reception",
+          place: "Nkolondom",
+        },
         {
           time: "3 / 4 PM",
-          title: "Religious Ceremony",
-          place: "EEC Nlongkak",
+          title: "Religious Wedding",
+          place: "Yaoundé",
         },
         {
           time: "8 PM",
-          title: "Evening Party",
-          place: "El Patchenko Hall – Nkondengui",
+          title: "Dance Party",
+          place: "Yaoundé",
         },
       ],
     },
@@ -37,40 +40,50 @@ export const content = {
       title: "Our Memories",
       subtitle: "Moments that tell our story",
       photos: [
-        { id: 1, src: "/assets/images/gallery1.jpg", alt: "Engagement photo" },
-        { id: 2, src: "/assets/images/gallery2.jpg", alt: "Pre-wedding shoot" },
+        {
+          id: 1,
+          src: "/assets/images/story-1.jpg",
+          alt: "Photo de fiançailles",
+        },
+        { id: 2, src: "/assets/images/ring.jpg", alt: "Séance pré-mariage" },
         {
           id: 3,
-          src: "/assets/images/gallery3.jpg",
-          alt: "Traditional ceremony",
+          src: "/assets/images/couple-1.jpg",
+          alt: "Mariage traditionnelle",
         },
         {
           id: 4,
-          src: "/assets/images/gallery4.jpg",
-          alt: "Celebration moment",
+          src: "/assets/images/couple-3.jpeg",
+          alt: "Moment de célébration",
         },
-        { id: 5, src: "/assets/images/gallery5.jpg", alt: "Romantic moment" },
-        { id: 6, src: "/assets/images/gallery6.jpg", alt: "With family" },
+        { id: 5, src: "/assets/images/couple-2.jpg", alt: "Moment romantique" },
+        { id: 6, src: "/assets/images/couple-5.jpeg", alt: "En famille" },
       ],
     },
     gifts: {
       title: "Gifts & Blessings",
-      text: "Your presence is the most precious gift.\n\nFor those who wish to support us in starting our new life together, you can contribute through:",
+      text: "Your presence is the most precious gift.\n\nFor those who wish to support us in starting our new life together 😊:",
       methods: [
         {
-          id: "mtn" as const,
-          label: "MTN Mobile Money",
-          details: "Phone: 651 670 774\nName: RAMÉLIE",
+          id: "paypal" as const,
+          label: "PayPal",
+          details:
+            "Email: \ntramelievanessa@gmail.com\nName: \nVanessa Ramélie",
+        },
+        {
+          id: "wero" as const,
+          label: "Wero",
+          details: "Phone : \n07 82 48 80 69",
         },
         {
           id: "orange" as const,
           label: "Orange Money",
-          details: "Phone: 698 907 675\nName: RÉMY",
+          details: "Phone: \n694 75 22 68\nName: \nTchomguie Vanessa",
         },
         {
-          id: "paypal" as const,
-          label: "PayPal",
-          details: "Email: tramelievanessa@gmail.com\nName: Vanessa Ramélie",
+          id: "mtn" as const,
+          label: "MTN Mobile Money",
+          details: "Phone: \n673 01 77 84\nName: \nSielinou Clotaire Rémy",
         },
       ],
       note: "Thank you for your generosity and love!",
@@ -78,40 +91,48 @@ export const content = {
     thanks: {
       title: "Thank You",
       text: "Thank you for your love, support and prayers.\n\nWith all our affection,\nRamélie & Rémy",
+      subtitle: "Confirmation of Attendance",
+      subdesc:
+        "Please confirm your attendance by clicking below and filling out the form",
+      buttonLabel: "Access the form",
+      link: "https://docs.google.com/forms/d/e/1FAIpQLSc_KRPQ4TWKaxhDXtGR-1tlQtXRVn7AES7uGmfAMr3hCqtndw/viewform?usp=dialog",
+      limit: "Deadline: April 20"
     },
   },
 
   fr: {
     cover: {
       names: "Ramélie & Rémy",
-      date: "Jeudi 23 Avril",
-      subtitle: "Catalogue de Mariage",
+      subtitle: "Programme du Mariage",
       quote: "L'amour est patient, l'amour est bienveillant.",
-      image: "/assets/images/couple-cover.jpeg",
+      image: "/assets/images/couple-cover.jpg",
     },
     welcome: {
-      title: "Message de Bienvenue",
-      text: "Chers invités,\n\nNous sommes profondément honorés de partager avec vous ce moment unique de nos vies. Votre présence est une véritable bénédiction que nous chérissons.",
+      text: "Chers invités,\n\nNotre histoire passe au chapitre “Pour toujours”. Votre présence rendra ce passage inoubliable.\n\n« Deux aventuriers ont décidé de faire équipe pour la vie »  Rejoignez l’expédition.\n\nVous êtes invités à rejoindre notre navire pour la traversée...",
+      image: "/assets/images/welcome.jpg"
     },
     program: {
-      title: "Programme du Mariage",
+      title: "Programme de Mariage",
       events: [
         {
           time: "Jeudi 23 Avril – 14h",
-          title: "Cérémonie Traditionnelle",
+          title: "Mariage Traditionnelle",
           place: "Yaoundé, Nkolbong",
         },
-        { time: "10h", title: "Mariage Civil", place: "Nkolondom" },
-        { time: "12h", title: "Réception", place: "Nkolondom" },
+        {
+          time: "10h",
+          title: "Mariage Civil suivi d'une Collation",
+          place: "Nkolondom",
+        },
         {
           time: "15h / 16h",
-          title: "Cérémonie Religieuse",
-          place: "EEC Nlongkak",
+          title: "Mariage Religieux",
+          place: "Yaoundé",
         },
         {
           time: "20h",
-          title: "Soirée",
-          place: "Salle El Patchenko – Nkondengui",
+          title: "Soirée Dansante",
+          place: "Yaoundé",
         },
       ],
     },
@@ -128,7 +149,7 @@ export const content = {
         {
           id: 3,
           src: "/assets/images/couple-1.jpg",
-          alt: "Cérémonie traditionnelle",
+          alt: "Mariage traditionnelle",
         },
         {
           id: 4,
@@ -141,22 +162,28 @@ export const content = {
     },
     gifts: {
       title: "Cadeaux & Bénédictions",
-      text: "Votre présence est le plus précieux des cadeaux.\n\nPour ceux qui souhaitent nous soutenir dans notre nouvelle vie, vous pouvez contribuer via :",
+      text: "Votre présence est le plus précieux des cadeaux.\n\nPour ceux qui souhaitent nous soutenir dans notre nouvelle vie 😊 :",
       methods: [
         {
-          id: "mtn" as const,
-          label: "MTN Mobile Money",
-          details: "Téléphone : 651 670 774\nNom : RAMÉLIE",
+          id: "paypal" as const,
+          label: "PayPal",
+          details:
+            "Email : \ntramelievanessa@gmail.com\nNom : \nVanessa Ramélie",
+        },
+        {
+          id: "wero" as const,
+          label: "Wero",
+          details: "Téléphone : \n07 82 48 80 69",
         },
         {
           id: "orange" as const,
           label: "Orange Money",
-          details: "Téléphone : 698 907 675\nNom : RÉMY",
+          details: "Téléphone : \n694 75 22 68\nNom : \nTchomguie Vanessa",
         },
         {
-          id: "paypal" as const,
-          label: "PayPal",
-          details: "Email : tramelievanessa@gmail.com\nNom : Vanessa Ramélie",
+          id: "mtn" as const,
+          label: "MTN Mobile Money",
+          details: "Téléphone : \n673 01 77 84\nNom : \nSielinou Clotaire Rémy",
         },
       ],
       note: "Merci pour votre générosité et votre amour !",
@@ -164,6 +191,12 @@ export const content = {
     thanks: {
       title: "Remerciements",
       text: "Merci pour votre amour, votre soutien et vos prières.\n\nAvec toute notre affection,\nRamélie & Rémy",
+      subtitle: "Confirmation de présence",
+      subdesc:
+        "Veuillez nous confirmer votre présence en cliquant ci-dessous et en remplissant le formulaire",
+      buttonLabel: "Accéder au formulaire",
+      link: "https://docs.google.com/forms/d/e/1FAIpQLSc_KRPQ4TWKaxhDXtGR-1tlQtXRVn7AES7uGmfAMr3hCqtndw/viewform?usp=dialog",
+      limit: "Date limite : 20 Avril"
     },
   },
 } as const;
