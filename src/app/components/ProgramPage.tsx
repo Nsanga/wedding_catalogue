@@ -16,6 +16,30 @@ interface ProgramPageProps {
 }
 
 const ProgramPage = ({ title, events, theme }: ProgramPageProps) => {
+
+  const getEventIcon = (title: string) => {
+    const titleLower = title.toLowerCase();
+  
+    if (titleLower.includes('civil') || titleLower.includes('civile')) {
+      return '📜'; // Parchemin/document pour mariage civil
+    } else if (titleLower.includes('traditionnel') || titleLower.includes('traditionnelle')) {
+      return '🌿'; // Feuille pour traditionnel
+    } else if (titleLower.includes('religieux') || titleLower.includes('religieuse')) {
+      return '⛪'; // Église
+    } else if (titleLower.includes('casse-croûte') || titleLower.includes('snack') || titleLower.includes('refreshment')) {
+      return '🥪'; // Sandwich
+    } else if (titleLower.includes('vin d\'honneur') || titleLower.includes('champagne') || titleLower.includes('reception')) {
+      return '🥂'; // Flûte de champagne
+    } else if (titleLower.includes('soirée') || titleLower.includes('dansante') || titleLower.includes('party') || titleLower.includes('dance')) {
+      return '💃'; // Danse
+    } else if (titleLower.includes('mariage') && titleLower.includes('civil')) {
+      return '💍'; // Bague de mariage
+    } else {
+      // Fallback basé sur l'index comme avant
+      return '🎉'; // Icône par défaut
+    }
+  };
+
   return (
     <div className="py-8 sm:py-10 px-3 sm:px-4 max-w-4xl mx-auto">
       <motion.div
@@ -36,7 +60,7 @@ const ProgramPage = ({ title, events, theme }: ProgramPageProps) => {
       <div className="relative pl-4 sm:pl-0">
         {/* Timeline line - Position ajustée pour mobile */}
         <div className="absolute left-4 sm:left-8 top-0 bottom-0 w-0.5 sm:w-1 bg-gradient-to-b from-[#E2725B] via-[#B84A4A] to-[#800000]" />
-        
+
         {events.map((event, index) => (
           <motion.div
             key={index}
@@ -60,22 +84,18 @@ const ProgramPage = ({ title, events, theme }: ProgramPageProps) => {
             {/* Event card - Layout responsive */}
             <motion.div
               whileHover={{ scale: 1.02, x: 5 }}
-              className={`flex-1 rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-md sm:shadow-lg border backdrop-blur-sm min-w-0 ${
-                theme === 'dark'
+              className={`flex-1 rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-md sm:shadow-lg border backdrop-blur-sm min-w-0 ${theme === 'dark'
                   ? 'bg-[#1a0a0a]/60 border-[#E2725B]/20'
                   : 'bg-white/70 border-[#E2725B]/30'
-              }`}
+                }`}
             >
               {/* Header avec layout vertical sur mobile */}
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-6 mb-3 sm:mb-4">
                 <div className="flex items-start sm:items-center gap-3 sm:gap-4">
-                  <div className={`w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-lg sm:rounded-xl flex items-center justify-center flex-shrink-0 ${
-                    theme === 'dark' ? 'bg-[#2a0a0a]' : 'bg-[#FFF5F0]'
-                  }`}>
+                  <div className={`w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-lg sm:rounded-xl flex items-center justify-center flex-shrink-0 ${theme === 'dark' ? 'bg-[#2a0a0a]' : 'bg-[#FFF5F0]'
+                    }`}>
                     <span className="text-xl sm:text-2xl">
-                      {index === 0 ? '👰' : 
-                       index === events.length - 1 ? '🎉' : 
-                       index === 1 ? '💍' : '💒'}
+                      {getEventIcon(event.title)}
                     </span>
                   </div>
                   <div className="min-w-0 flex-1">
@@ -88,7 +108,7 @@ const ProgramPage = ({ title, events, theme }: ProgramPageProps) => {
                     </p>
                   </div>
                 </div>
-                
+
                 {/* Time badge - Taille adaptative */}
                 <div className="px-3 sm:px-4 py-1.5 sm:py-2 rounded-full shadow text-center sm:text-left w-full sm:w-auto"
                   style={{ background: theme === 'dark' ? 'linear-gradient(to right, #E2725B, #800000)' : 'linear-gradient(to right, #FF7A5C, #B84A4A)' }}
@@ -96,7 +116,7 @@ const ProgramPage = ({ title, events, theme }: ProgramPageProps) => {
                   <p className="text-white font-bold text-sm sm:text-base">{event.time}</p>
                 </div>
               </div>
-              
+
               {/* Place visible uniquement sur mobile */}
               <div className="flex items-center gap-2 sm:hidden mt-2">
                 <span className="text-base">📍</span>
@@ -104,7 +124,7 @@ const ProgramPage = ({ title, events, theme }: ProgramPageProps) => {
                   {event.place}
                 </p>
               </div>
-              
+
               {/* Place version desktop (avec plus de détails) */}
               <div className="hidden sm:flex items-center gap-2 mt-2">
                 <span className="text-base sm:text-lg">📍</span>
@@ -121,14 +141,13 @@ const ProgramPage = ({ title, events, theme }: ProgramPageProps) => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.3 }}
-        className={`text-center mt-12 sm:mt-16 p-6 sm:p-8 rounded-xl sm:rounded-2xl border backdrop-blur-sm mx-2 sm:mx-0 ${
-          theme === 'dark'
+        className={`text-center mt-12 sm:mt-16 p-6 sm:p-8 rounded-xl sm:rounded-2xl border backdrop-blur-sm mx-2 sm:mx-0 ${theme === 'dark'
             ? 'bg-gradient-to-r from-[#1a0a0a] to-[#2a0a0a] border-[#E2725B]/30'
             : 'bg-gradient-to-r from-[#FFF5F0] to-[#FFE8E0] border-[#E2725B]/50'
-        }`}
+          }`}
       >
         <p className={`text-md sm:text-xl md:text-2xl font-serif italic ${theme === 'dark' ? 'text-[#FFD1C4]' : 'text-[#800000]'} leading-relaxed`}>
-        &quot;Nous avons hâte de partager tous ces moments magiques avec vous !&quot;
+          &quot;Nous avons hâte de partager tous ces moments magiques avec vous !&quot;
         </p>
         <motion.div
           className="flex justify-center gap-3 sm:gap-4 mt-4 sm:mt-6"

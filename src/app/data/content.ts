@@ -15,23 +15,28 @@ export const content = {
       title: "Wedding Program",
       events: [
         {
-          time: "Thursday April 23 – 2 PM",
-          title: "Traditional Wedding",
-          place: "Yaoundé, Nkolbong",
-        },
-        {
-          time: "10 AM",
-          title: "Civil Wedding followed by a reception",
-          place: "Nkolondom",
-        },
-        {
-          time: "3 / 4 PM",
-          title: "Religious Wedding",
+          time: "Thursday April 23 – 11:00 AM",
+          title: "Civil Wedding followed by a light snack",
           place: "Yaoundé",
         },
         {
-          time: "8 PM",
-          title: "Dance Party",
+          time: "Thursday April 23 – 3:00 PM",
+          title: "Traditional Ceremony",
+          place: "Yaoundé",
+        },
+        {
+          time: "Saturday April 25 - 1:00 PM",
+          title: "Religious Ceremony",
+          place: "Yaoundé",
+        },
+        {
+          time: "Saturday April 25 - 4:00 PM",
+          title: "Champagne Reception",
+          place: "Yaoundé",
+        },
+        {
+          time: "Saturday April 25 - 8:00 PM",
+          title: "Evening Party / Dancing Night",
           place: "Yaoundé",
         },
       ],
@@ -96,7 +101,7 @@ export const content = {
         "Please confirm your attendance by clicking below and filling out the form",
       buttonLabel: "Access the form",
       link: "https://docs.google.com/forms/d/e/1FAIpQLSc_KRPQ4TWKaxhDXtGR-1tlQtXRVn7AES7uGmfAMr3hCqtndw/viewform?usp=dialog",
-      limit: "Deadline: April 20"
+      limit: "Deadline: April 1st"
     },
   },
 
@@ -115,22 +120,27 @@ export const content = {
       title: "Programme de Mariage",
       events: [
         {
-          time: "Jeudi 23 Avril – 14h",
-          title: "Mariage Traditionnelle",
-          place: "Yaoundé, Nkolbong",
+          time: "Jeudi 23 Avril – 11h00",
+          title: "Mariage Civil suivi  d'un casse croute",
+          place: "Yaoundé",
         },
         {
-          time: "10h",
-          title: "Mariage Civil suivi d'une Collation",
-          place: "Nkolondom",
+          time: "Jeudi 23 Avril – 15h00",
+          title: "Mariage Traditionnel",
+          place: "Yaoundé",
         },
         {
-          time: "15h / 16h",
+          time: "Samedi 25 Avril - 13h00",
           title: "Mariage Religieux",
           place: "Yaoundé",
         },
         {
-          time: "20h",
+          time: "Samedi 25 Avril - 16h00",
+          title: "Vin d'honneur",
+          place: "Yaoundé",
+        },
+        {
+          time: "Samedi 25 Avril - 20h",
           title: "Soirée Dansante",
           place: "Yaoundé",
         },
@@ -196,7 +206,7 @@ export const content = {
         "Veuillez nous confirmer votre présence en cliquant ci-dessous et en remplissant le formulaire",
       buttonLabel: "Accéder au formulaire",
       link: "https://docs.google.com/forms/d/e/1FAIpQLSc_KRPQ4TWKaxhDXtGR-1tlQtXRVn7AES7uGmfAMr3hCqtndw/viewform?usp=dialog",
-      limit: "Date limite : 20 Avril"
+      limit: "Date limite : 1er Avril"
     },
   },
 } as const;
