@@ -67,7 +67,7 @@ export const content = {
     },
     gifts: {
       title: "Gifts & Blessings",
-      text: "Your presence is the most precious gift.\n\nFor those who wish to support us in starting our new life together 😊:",
+      text: "Your presence is the most precious gift.\nSince we do not live in Cameroon, we unfortunately cannot bring physical gifts.\n\nFor those who wish to support us in starting our new life together 😊:",
       methods: [
         {
           id: "paypal" as const,
@@ -172,7 +172,7 @@ export const content = {
     },
     gifts: {
       title: "Cadeaux & Bénédictions",
-      text: "Votre présence est le plus précieux des cadeaux.\n\nPour ceux qui souhaitent nous soutenir dans notre nouvelle vie 😊 :",
+      text: "Votre présence est le plus précieux des cadeaux.\nNe vivant pas au Cameroun, nous ne pouvons malheureusement pas emporter de cadeaux physiques\n\nPour ceux qui souhaitent nous soutenir dans notre nouvelle vie 😊 :",
       methods: [
         {
           id: "paypal" as const,

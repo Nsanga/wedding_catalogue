@@ -136,7 +136,7 @@ const TextPage = ({ title, text, subtitle, subdesc, buttonLabel, link, limit, im
 
         {/* Decorative elements with animation */}
         <motion.div
-          className="flex justify-center gap-6 md:gap-8 mt-8"
+          className="flex justify-center gap-6 md:gap-8 mt-8 pt-8"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.6 }}

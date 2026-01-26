@@ -129,7 +129,7 @@ export default function WeddingCatalogue() {
       <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
       <LanguageToggle lang={lang} setLang={(newLang: string) => setLang(newLang as Language)} theme={theme} />
 
-      <main className="min-h-screen flex flex-col items-center px-4 pt-24 pb-32 relative z-10">
+      <main className="min-h-screen flex flex-col items-center px-4 pt-14 pb-20 relative z-10">
         <PageWrapper pageKey={page + lang}>
           {pages[page]}
         </PageWrapper>
