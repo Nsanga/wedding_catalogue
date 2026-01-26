@@ -103,7 +103,7 @@ export const content = {
   fr: {
     cover: {
       names: "Ramélie & Rémy",
-      subtitle: "Programme du Mariage",
+      subtitle: "Programme de Mariage",
       quote: "L'amour est patient, l'amour est bienveillant.",
       image: "/assets/images/couple-cover.jpg",
     },

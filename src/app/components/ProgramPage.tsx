@@ -127,7 +127,7 @@ const ProgramPage = ({ title, events, theme }: ProgramPageProps) => {
             : 'bg-gradient-to-r from-[#FFF5F0] to-[#FFE8E0] border-[#E2725B]/50'
         }`}
       >
-        <p className={`text-lg sm:text-xl md:text-2xl font-serif italic ${theme === 'dark' ? 'text-[#FFD1C4]' : 'text-[#800000]'} leading-relaxed`}>
+        <p className={`text-md sm:text-xl md:text-2xl font-serif italic ${theme === 'dark' ? 'text-[#FFD1C4]' : 'text-[#800000]'} leading-relaxed`}>
         &quot;Nous avons hâte de partager tous ces moments magiques avec vous !&quot;
         </p>
         <motion.div
