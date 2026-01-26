@@ -68,7 +68,7 @@ export const content = {
           id: "paypal" as const,
           label: "PayPal",
           details:
-            "Email: \ntramelievanessa@gmail.com\nName: \nVanessa Ramélie",
+            "Email: \ntramelievanessa@gmail.com",
         },
         {
           id: "wero" as const,
@@ -168,7 +168,7 @@ export const content = {
           id: "paypal" as const,
           label: "PayPal",
           details:
-            "Email : \ntramelievanessa@gmail.com\nNom : \nVanessa Ramélie",
+            "Email : \ntramelievanessa@gmail.com",
         },
         {
           id: "wero" as const,
