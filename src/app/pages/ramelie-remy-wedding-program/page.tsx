@@ -172,7 +172,7 @@ export default function WeddingCatalogue() {
       </div>
 
       {/* Sound control for background music */}
-      <div className="fixed bottom-6 left-6 z-40">
+      {/* <div className="fixed bottom-6 left-6 z-40">
         <motion.button
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
@@ -186,7 +186,7 @@ export default function WeddingCatalogue() {
             <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z" />
           </svg>
         </motion.button>
-      </div>
+      </div> */}
     </div>
   );
 }
