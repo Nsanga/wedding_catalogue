@@ -11,7 +11,7 @@ type Cover = {
   image: string;
 }
 
-interface Data { 
+interface Data {
   data: Cover;
   theme: 'light' | 'dark';
 }
@@ -40,20 +40,55 @@ const CoverPage = ({ data, theme }: Data) => {
       >
         <div className="relative w-56 h-56 md:w-72 md:h-72 mx-auto mb-10 rounded-full overflow-hidden border-4 border-white/40 shadow-2xl">
           <div className="relative w-full h-full">
+            {/* Fond de fallback */}
+            <div className={`absolute inset-0 rounded-full ${theme === 'dark'
+                ? 'bg-gradient-to-br from-[#2a0a0a] to-[#3a1a1a]'
+                : 'bg-gradient-to-br from-[#FFF5F0] to-[#FFE8E0]'
+              }`} />
+
+            {/* Image avec overlay */}
             <Image
               src={data.image}
               alt="Couple"
               fill
               sizes="(max-width: 768px) 224px, 288px"
-              className="object-cover object-[center_20%] transition-transform duration-700 hover:scale-110"
+              className="object-cover object-[center_20%] transition-transform duration-700 hover:scale-110 rounded-full"
               priority={true}
               onError={(e) => {
-                // Fallback en cas d'erreur de chargement
                 const target = e.target as HTMLImageElement;
                 target.style.display = 'none';
-                // Vous pouvez ajouter une image de fallback ici
               }}
             />
+
+            {/* Overlay avec effet de dégradé */}
+            <div className={`absolute inset-0 rounded-full mix-blend-overlay transition-all duration-500 ${theme === 'dark'
+                ? 'bg-gradient-to-t from-[#1a0a0a]/40 via-transparent to-transparent'
+                : 'bg-gradient-to-t from-white/10 via-transparent to-transparent'
+              }`} />
+
+            {/* Couche de couleur thématique */}
+            <div className={`absolute inset-0 rounded-full mix-blend-soft-light transition-all duration-500 ${theme === 'dark'
+                ? 'bg-gradient-to-br from-[#E2725B]/10 via-[#800000]/5 to-transparent'
+                : 'bg-gradient-to-br from-[#E2725B]/5 via-[#800000]/3 to-transparent'
+              }`} />
+
+            {/* Vignettage (effet de bord sombre/clair) */}
+            <div className={`absolute inset-0 rounded-full transition-all duration-500 ${theme === 'dark'
+                ? 'box-shadow-[inset_0_0_60px_30px_rgba(10,0,0,0.4)]'
+                : 'box-shadow-[inset_0_0_60px_30px_rgba(255,255,255,0.2)]'
+              }`} />
+
+            {/* Bordure décorative */}
+            <div className={`absolute inset-0 rounded-full border-2 transition-all duration-500 ${theme === 'dark'
+                ? 'border-[#E2725B]/30'
+                : 'border-[#E2725B]/20'
+              }`} />
+
+            {/* Effet de lumière */}
+            <div className={`absolute inset-0 rounded-full bg-gradient-to-tr from-transparent ${theme === 'dark'
+                ? 'via-[#E2725B]/5 to-transparent'
+                : 'via-white/10 to-transparent'
+              } pointer-events-none`} />
           </div>
           <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none" />
           {/* Ornamental border */}
