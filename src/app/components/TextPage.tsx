@@ -73,14 +73,45 @@ const TextPage = ({ title, text, subtitle, subdesc, buttonLabel, link, limit, im
               <div className="flex flex-col items-center gap-4">
                 <div className="flex items-center gap-3 mb-2">
                   <div className={`p-3 rounded-full ${theme === 'dark' ? 'bg-[#2a0a0a]' : 'bg-[#FFF5F0]'}`}>
-                    <span className="text-2xl">📋</span>
+                    <div className="relative">
+                      {/* Effet de lueur */}
+                      <motion.div
+                        className="absolute inset-0 rounded-full blur-md opacity-70"
+                        animate={{
+                          scale: [1, 1.5, 1],
+                          opacity: [0.3, 0.7, 0.3],
+                        }}
+                        transition={{
+                          duration: 2,
+                          repeat: Infinity,
+                        }}
+                        style={{ background: theme === 'dark' ? '#E2725B' : '#800000' }}
+                      />
+
+                      {/* Cloche principale */}
+                      <motion.div
+                        animate={{
+                          rotate: [0, -15, 15, -15, 0],
+                          y: [0, -5, 0, -5, 0],
+                        }}
+                        transition={{
+                          duration: 2.5,
+                          repeat: Infinity,
+                          repeatDelay: 2,
+                          ease: "easeInOut"
+                        }}
+                        className="relative text-2xl"
+                      >
+                        🔔
+                      </motion.div>
+                    </div>
                   </div>
                   <h3 className={`text-xl font-bold ${theme === 'dark' ? 'text-[#FFD1C4]' : 'text-[#800000]'}`}>
                     {subtitle}
                   </h3>
                 </div>
 
-                <p className={`text-sm md:text-base ${theme === 'dark' ? 'text-[#FFD1C4]/80' : 'text-[#800000]/80'} mb-4`}>
+                <p className={`text-sm md:text-base font-semibold ${theme === 'dark' ? 'text-[#FFD1C4]/80' : 'text-[#800000]/80'} mb-4`}>
                   {subdesc}
                 </p>
 

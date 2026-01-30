@@ -96,7 +96,7 @@ export const content = {
     thanks: {
       title: "Thank You",
       text: "Thank you for your love, support and prayers.\n\nWith all our affection,\nRamélie & Rémy",
-      subtitle: "Confirmation of Attendance",
+      subtitle: "Confirmation of Attendance Required",
       subdesc:
         "Please confirm your attendance by clicking below and filling out the form",
       buttonLabel: "Access the form",
@@ -201,7 +201,7 @@ export const content = {
     thanks: {
       title: "Remerciements",
       text: "Merci pour votre amour, votre soutien et vos prières.\n\nAvec toute notre affection,\nRamélie & Rémy",
-      subtitle: "Confirmation de présence",
+      subtitle: "Confirmation de présence obligatoire",
       subdesc:
         "Veuillez nous confirmer votre présence en cliquant ci-dessous et en remplissant le formulaire",
       buttonLabel: "Accéder au formulaire",
