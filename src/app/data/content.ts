@@ -8,7 +8,7 @@ export const content = {
       image: "/assets/images/couple-cover.jpg",
     },
     welcome: {
-      text: "Dear guests,\n\nWe are deeply honored to share this unique moment of our lives with you. Your presence is a true blessing we cherish.",
+      text: "Dear guests,\n\nWe are deeply honored to share this unique moment of our lives with you.",
       image: "/assets/images/welcome.jpg"
     },
     program: {
@@ -113,7 +113,7 @@ export const content = {
       image: "/assets/images/couple-cover.jpg",
     },
     welcome: {
-      text: "Chers invités,\n\nNotre histoire passe au chapitre “Pour toujours”. Votre présence rendra ce passage inoubliable.\n\n« Deux aventuriers ont décidé de faire équipe pour la vie »  Rejoignez l’expédition.\n\nVous êtes invités à rejoindre notre navire pour la traversée...",
+      text: "Chers invités,\n\nNotre histoire passe au chapitre “Pour toujours”. Votre présence rendra ce passage inoubliable.\n\n« Deux aventuriers ont décidé de faire équipe pour la vie »",
       image: "/assets/images/welcome.jpg"
     },
     program: {

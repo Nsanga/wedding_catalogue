@@ -53,7 +53,7 @@ const ProgramPage = ({ title, events, theme }: ProgramPageProps) => {
           </span>
         </h2>
         <p className={`text-base sm:text-lg ${theme === 'dark' ? 'text-[#FFD1C4]' : 'text-[#5A0000]'} italic px-2`}>
-          Suivez chaque moment magique de notre journée spéciale
+          Suivez chaque moment exceptionnel de notre journée spéciale
         </p>
       </motion.div>
 
