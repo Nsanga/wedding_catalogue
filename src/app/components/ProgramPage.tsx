@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useSearchParams } from 'next/navigation';
 
 type Event = {
   time: string;
@@ -15,7 +16,29 @@ interface ProgramPageProps {
   theme: 'light' | 'dark';
 }
 
+const ACCESS_TOKEN = 'RAMELIE-REMY-2026';
+
 const ProgramPage = ({ title, events, theme }: ProgramPageProps) => {
+  const params = useSearchParams(); 
+  const token = params.get('access');
+
+  const hasEveningAccess = token === ACCESS_TOKEN;
+
+  const visibleEvents = React.useMemo(() => {
+    if (hasEveningAccess) return events;
+  
+    return events.filter(event => {
+      const title = event.title.toLowerCase();
+      const time = event.time.toLowerCase();
+  
+      // On cache la soirée du samedi
+      const isSaturdayEvening =
+        time.includes('samedi 25') &&
+        (title.includes('soirée') || title.includes('dansante'));
+  
+      return !isSaturdayEvening;
+    });
+  }, [events, hasEveningAccess]);  
 
   const getEventIcon = (title: string) => {
     const titleLower = title.toLowerCase();
@@ -61,7 +84,7 @@ const ProgramPage = ({ title, events, theme }: ProgramPageProps) => {
         {/* Timeline line - Position ajustée pour mobile */}
         <div className="absolute left-4 sm:left-8 top-0 bottom-0 w-0.5 sm:w-1 bg-gradient-to-b from-[#E2725B] via-[#B84A4A] to-[#800000]" />
 
-        {events.map((event, index) => (
+        {visibleEvents.map((event, index) => (
           <motion.div
             key={index}
             initial={{ opacity: 0, x: -20 }}
