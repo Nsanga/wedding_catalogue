@@ -34,7 +34,7 @@ const ProgramPage = ({ title, events, theme }: ProgramPageProps) => {
       // On cache la soirée du samedi
       const isSaturdayEvening =
         time.includes('samedi 25') &&
-        (title.includes('soirée') || title.includes('dansante'));
+        (title.includes('soirée') || title.includes('dansante') || title.includes('party') || title.includes('dancing'));
   
       return !isSaturdayEvening;
     });
