@@ -84,7 +84,7 @@ const ProgramPage = ({ title, events, theme }: ProgramPageProps) => {
         {/* Timeline line - Position ajustée pour mobile */}
         <div className="absolute left-4 sm:left-8 top-0 bottom-0 w-0.5 sm:w-1 bg-gradient-to-b from-[#E2725B] via-[#B84A4A] to-[#800000]" />
 
-        {visibleEvents.map((event, index) => (
+        {events.map((event, index) => (
           <motion.div
             key={index}
             initial={{ opacity: 0, x: -20 }}

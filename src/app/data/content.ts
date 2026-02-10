@@ -15,30 +15,25 @@ export const content = {
       title: "Wedding Program",
       events: [
         {
-          time: "Thursday April 23 – 11:00 AM",
-          title: "Civil Wedding followed by a light snack",
-          place: "Yaoundé",
-        },
-        {
           time: "Thursday April 23 – 3:00 PM",
           title: "Traditional Ceremony",
           place: "Yaoundé",
         },
         {
-          time: "Saturday April 25 - 1:00 PM",
+          time: "Friday April 24 – 1:00 PM",
+          title: "Civil Wedding followed by a light snack",
+          place: "Yaoundé",
+        },
+        {
+          time: "Saturday April 25 - 10:00 AM",
           title: "Religious Ceremony",
           place: "Yaoundé",
         },
         {
-          time: "Saturday April 25 - 4:00 PM",
+          time: "Saturday April 25 - 1:00 PM",
           title: "Champagne Reception",
           place: "Yaoundé",
-        },
-        {
-          time: "Saturday April 25 - 8:00 PM",
-          title: "Evening Party / Dancing Night",
-          place: "Yaoundé",
-        },
+        }
       ],
     },
     gallery: {
@@ -120,28 +115,23 @@ export const content = {
       title: "Programme de Mariage",
       events: [
         {
-          time: "Jeudi 23 Avril – 11h00",
-          title: "Mariage Civil suivi  d'un casse croute",
-          place: "Yaoundé",
-        },
-        {
           time: "Jeudi 23 Avril – 15h00",
           title: "Mariage Traditionnel",
           place: "Yaoundé",
         },
         {
-          time: "Samedi 25 Avril - 13h00",
+          time: "Vendredi 24 Avril – 13h00",
+          title: "Mariage Civil suivi  d'un casse croute",
+          place: "Yaoundé",
+        },
+        {
+          time: "Samedi 25 Avril - 10h00",
           title: "Mariage Religieux",
           place: "Yaoundé",
         },
         {
-          time: "Samedi 25 Avril - 16h00",
+          time: "Samedi 25 Avril - 13h00",
           title: "Vin d'honneur",
-          place: "Yaoundé",
-        },
-        {
-          time: "Samedi 25 Avril - 20h",
-          title: "Soirée Dansante",
           place: "Yaoundé",
         },
       ],

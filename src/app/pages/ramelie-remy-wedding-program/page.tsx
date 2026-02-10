@@ -10,16 +10,19 @@ import GalleryPage from "@/app/components/GalleryPage";
 import ThemeToggle from "@/app/components/ThemeToggle";
 import Navigation from "@/app/components/Navigation";
 import { content } from "@/app/data/content";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 
 type Language = keyof typeof content;
 
 export default function WeddingCatalogue() {
   const [lang, setLang] = useState<Language>("fr");
-  const [page, setPage] = useState(0); 
+  const [page, setPage] = useState(0);
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
   const [mounted, setMounted] = useState(false);
+
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const [soundEnabled, setSoundEnabled] = useState(false);
 
   const data = content[lang];
 
@@ -83,7 +86,42 @@ export default function WeddingCatalogue() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [pages.length]);
 
+  useEffect(() => {
+    setMounted(true);
+
+    const savedTheme = localStorage.getItem('wedding-theme');
+    if (savedTheme === 'dark' || savedTheme === 'light') {
+      setTheme(savedTheme);
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      setTheme('dark');
+    }
+
+    const savedSound = localStorage.getItem('wedding-sound');
+    if (savedSound === 'on') {
+      setSoundEnabled(true);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!audioRef.current) return;
+
+    if (soundEnabled) {
+      audioRef.current.volume = 0.4;
+      audioRef.current.play().catch(() => { });
+      localStorage.setItem('wedding-sound', 'on');
+    } else {
+      audioRef.current.pause();
+      localStorage.setItem('wedding-sound', 'off');
+    }
+  }, [soundEnabled]);
+
   if (!mounted) return null;
+
+  <audio
+    ref={audioRef}
+    src="/assets/audio/background.mp3"
+    loop
+  />
 
   return (
     <div className={`min-h-screen transition-colors duration-500 overflow-x-hidden ${theme === 'dark'
@@ -172,8 +210,9 @@ export default function WeddingCatalogue() {
       </div>
 
       {/* Sound control for background music */}
-      {/* <div className="fixed bottom-6 left-6 z-40">
+      <div className="fixed bottom-6 left-6 z-40">
         <motion.button
+          onClick={() => setSoundEnabled(prev => !prev)}
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           className={`p-3 rounded-full backdrop-blur-md border ${theme === 'dark'
@@ -182,11 +221,9 @@ export default function WeddingCatalogue() {
             } shadow-lg`}
           title="Toggle background music"
         >
-          <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z" />
-          </svg>
+          {soundEnabled ? "🔊" : "🔇"}
         </motion.button>
-      </div> */}
+      </div>
     </div>
   );
 }
