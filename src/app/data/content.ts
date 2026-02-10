@@ -21,7 +21,7 @@ export const content = {
         },
         {
           time: "Friday April 24 – 1:00 PM",
-          title: "Civil Wedding followed by a light snack",
+          title: "Civil Wedding",
           place: "Yaoundé",
         },
         {
@@ -71,11 +71,6 @@ export const content = {
             "Email: \ntramelievanessa@gmail.com",
         },
         {
-          id: "wero" as const,
-          label: "Wero",
-          details: "Phone : \n07 82 48 80 69",
-        },
-        {
           id: "orange" as const,
           label: "Orange Money",
           details: "Phone: \n694 75 22 68\nName: \nTchomguie Vanessa",
@@ -84,6 +79,11 @@ export const content = {
           id: "mtn" as const,
           label: "MTN Mobile Money",
           details: "Phone: \n673 01 77 84\nName: \nSielinou Clotaire Rémy",
+        },
+        {
+          id: "wero" as const,
+          label: "Wero",
+          details: "Phone : \n07 82 48 80 69",
         },
       ],
       note: "Thank you for your generosity and love!",
@@ -96,7 +96,7 @@ export const content = {
         "Please confirm your attendance by clicking below and filling out the form",
       buttonLabel: "Access the form",
       link: "https://docs.google.com/forms/d/e/1FAIpQLSc_KRPQ4TWKaxhDXtGR-1tlQtXRVn7AES7uGmfAMr3hCqtndw/viewform?usp=dialog",
-      limit: "Deadline: April 1st"
+      limit: "Deadline: March 15"
     },
   },
 
@@ -121,7 +121,7 @@ export const content = {
         },
         {
           time: "Vendredi 24 Avril – 13h00",
-          title: "Mariage Civil suivi  d'un casse croute",
+          title: "Mariage Civil",
           place: "Yaoundé",
         },
         {
@@ -171,11 +171,6 @@ export const content = {
             "Email : \ntramelievanessa@gmail.com",
         },
         {
-          id: "wero" as const,
-          label: "Wero",
-          details: "Téléphone : \n07 82 48 80 69",
-        },
-        {
           id: "orange" as const,
           label: "Orange Money",
           details: "Téléphone : \n694 75 22 68\nNom : \nTchomguie Vanessa",
@@ -184,6 +179,11 @@ export const content = {
           id: "mtn" as const,
           label: "MTN Mobile Money",
           details: "Téléphone : \n673 01 77 84\nNom : \nSielinou Clotaire Rémy",
+        },
+        {
+          id: "wero" as const,
+          label: "Wero",
+          details: "Téléphone : \n07 82 48 80 69",
         },
       ],
       note: "Merci pour votre générosité et votre amour !",
@@ -196,7 +196,7 @@ export const content = {
         "Veuillez nous confirmer votre présence en cliquant ci-dessous et en remplissant le formulaire",
       buttonLabel: "Accéder au formulaire",
       link: "https://docs.google.com/forms/d/e/1FAIpQLSc_KRPQ4TWKaxhDXtGR-1tlQtXRVn7AES7uGmfAMr3hCqtndw/viewform?usp=dialog",
-      limit: "Date limite : 1er Avril"
+      limit: "Date limite : 15 Mars"
     },
   },
 } as const;
