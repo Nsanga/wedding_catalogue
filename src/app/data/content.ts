@@ -14,11 +14,11 @@ export const content = {
     program: {
       title: "Wedding Program",
       events: [
-        {
-          time: "Thursday April 23 – 3:00 PM",
-          title: "Traditional Ceremony",
-          place: "Yaoundé",
-        },
+        // {
+        //   time: "Thursday April 23 – 3:00 PM",
+        //   title: "Traditional Ceremony",
+        //   place: "Yaoundé",
+        // },
         {
           time: "Friday April 24 – 1:00 PM",
           title: "Civil Wedding",
@@ -114,11 +114,11 @@ export const content = {
     program: {
       title: "Programme de Mariage",
       events: [
-        {
-          time: "Jeudi 23 Avril – 15h00",
-          title: "Mariage Traditionnel",
-          place: "Yaoundé",
-        },
+        // {
+        //   time: "Jeudi 23 Avril – 15h00",
+        //   title: "Mariage Traditionnel",
+        //   place: "Yaoundé",
+        // },
         {
           time: "Vendredi 24 Avril – 13h00",
           title: "Mariage Civil",
